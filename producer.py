@@ -7,13 +7,14 @@ def delivery_report(err, msg):
         print(f"Delivery failed: {err}")
     else:
         print(f"Delivered {msg.value().decode('utf-8')}")
+        print(f"Delivered to {msg.topic()} : partition {msg.partition()} at {msg.offset()}")
 
 producer = Producer({'bootstrap.servers': 'localhost:9092'})
 
 order = {
     "order_id": str(uuid.uuid4()),
-    "user": "chris",
-    "item": "keyboard",
+    "user": "tom",
+    "item": "headset",
     "quantity": 1
 }
 
